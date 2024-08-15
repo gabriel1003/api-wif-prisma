@@ -1,5 +1,6 @@
+import { User } from "@prisma/client";
 
-export class UserEntity {
+export class UserEntity implements User {
 
   id: number;
 
@@ -10,6 +11,5 @@ export class UserEntity {
   admin: boolean;
 
   createdAt: Date;
-
 
 }
