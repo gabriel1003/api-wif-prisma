@@ -11,10 +11,8 @@ export class HttpExceptionFilter<T extends HttpException> implements ExceptionFi
 
     const status = exception.getStatus();
 
-    const error = typeof response === 'string' ? {
-
-      message: exceptionResponse
-    } : (exceptionResponse as object);
+    const exceptionResponse = exception.getResponse();
+    const error = typeof response === 'string' ? { message: exceptionResponse } : (exceptionResponse as object);
 
     response.status(status).json({
 

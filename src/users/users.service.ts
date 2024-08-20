@@ -1,38 +1,35 @@
 import { Injectable } from "@nestjs/common";
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
 import { UsersRepository } from "./repositories/users.repository";
 import { UserEntity } from "./entities/user.entity";
+import { NotFoundError } from "../common/errors/types/NotFoundError";
 
 @Injectable()
 export class UsersService {
 
-  constructor( private readonly  repository: UsersRepository ) {
+  constructor(private readonly repository: UsersRepository) {
   }
 
   create(createUserDto: CreateUserDto) {
 
     return this.repository.create(createUserDto);
-
   }
 
   findAll() {
 
-    return this.repository.findAll(f);
-
+    return this.repository.findAll();
   }
 
   async findOne(id: number): Promise<UserEntity> {
 
     const user = await this.repository.findOne(id);
 
-if (!user) {
+    if (!user) {
+      throw new NotFoundError('Usuario não encontrado');
+    }
 
-  // throw new NotFoundError('Usuario não encontrado');
-
-}
-
-return user;
+    return user;
 
   }
 

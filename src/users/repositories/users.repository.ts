@@ -14,8 +14,7 @@ export class UsersRepository {
 
     return this.prisma.user.create({
 
-      data: createUserDto;
-
+      data: createUserDto,
       include: {
         posts: {
           select: {
