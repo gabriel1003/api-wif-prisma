@@ -25,7 +25,6 @@ app.useGlobalPipes( new ValidationPipe({
 
   app.useGlobalInterceptors( new ConflictInterceptor());
   app.useGlobalInterceptors( new DatabaseInterceptor());
-app.useGlobalInterceptors(new DatabaseInterceptor());
 app.useGlobalInterceptors(new UnauthorizedInterceptor());
 app.useGlobalInterceptors(new NotfoundInterceptor());
 
